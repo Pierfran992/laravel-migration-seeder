@@ -17,6 +17,9 @@ return new class extends Migration
             $table -> id();
 
             $table -> string('azienda', 32);
+            $table -> smallInteger('codice_treno') -> unique(); 
+            $table -> smallInteger('numero_carrozze') -> unsigned();
+
             $table -> string('stazione_di_partenza', 64);
             $table -> string('stazione_di_arrivo', 64);
 
@@ -26,11 +29,8 @@ return new class extends Migration
             $table -> date('data_di_arrivo');
             $table -> time('orario_di_arrivo');
 
-            $table -> smallInteger('codice_treno');
-            $table -> smallInteger('numero_carrozze');
-
-            $table -> boolean('in_orario');
-            $table -> boolean('cancellato');
+            $table -> boolean('in_orario') -> default(true);
+            $table -> boolean('cancellato') -> default(false);
 
             $table -> timestamps();
         });
